@@ -1,0 +1,31 @@
+name: Daily Garmin Sync
+
+on:
+  schedule:
+    # This runs at 11:00 AM UTC every day. (Use crontab.guru to adjust)
+    - cron: '0 11 * * *'
+  workflow_dispatch: # Allows you to run it manually by clicking a button
+
+jobs:
+  sync_garmin:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        # Install the libraries your script needs
+        run: pip install garminconnect gspread
+
+      - name: Run Python Script
+        env:
+          GARMIN_EMAIL: ${{ secrets.GARMIN_EMAIL }}
+          GARMIN_PASSWORD: ${{ secrets.GARMIN_PASSWORD }}
+          GSPREAD_CREDENTIALS: ${{ secrets.GSPREAD_CREDENTIALS }}
+        run: python main.py
