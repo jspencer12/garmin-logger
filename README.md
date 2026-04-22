@@ -1,4 +1,4 @@
-# Daily Garmin Exporter
+# Garmin Logger
 
 Automated daily sync of Garmin data to Google Sheets using GitHub Actions.
 
@@ -15,7 +15,7 @@ Follow these steps to set up the automated sync:
 2.  Create a new Project (if you don't have one).
 3.  Search for **Google Sheets API** and **Google Drive API** in the main search bar and enable them.
 4.  Go to **IAM & Admin > Service Accounts** and create a new **Service Account**.
-5.  After generating the accout, click on **Keys > Add Key** and generate a **JSON Key**. Download this file.
+5.  After generating the account, click on **Keys > Add Key** and generate a **JSON Key**. Download this file.
 6.  Open your Google Sheet, click **Share**, and add the email address of your Service Account (e.g., `my-bot@my-project.iam.gserviceaccount.com`) as an Editor.
 
 ### 3. GitHub Secrets Setup
@@ -29,6 +29,38 @@ Clone this repository. After cloning, open the repository in your browser and go
 2.  Select **Daily Garmin Sync**.
 3.  Click **Run workflow** to test it manually.
 4.  The workflow is scheduled to run daily at 11:00 AM UTC.
+
+## Local Testing
+
+You can run the script locally to test it before committing changes.
+
+### 1. Set up Local Secrets
+1.  Create a file named `.env` in the root directory of the project.
+2.  Add your Garmin credentials to the `.env` file:
+    ```text
+    GARMIN_EMAIL="your_email@example.com"
+    GARMIN_PASSWORD="your_password"
+    ```
+3.  Place the Google Service Account JSON key file you downloaded in the `secrets/` folder and rename it to `garmin-logger-key.json`.
+
+### 2. Install Dependencies
+1. Create a virtual environment if you haven't already:
+   ```bash
+   python -m venv venv_garmin_logger
+   ```
+2. Activate the virtual environment:
+   ```bash
+   source venv_garmin_logger/bin/activate
+   ```
+3. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### 3. Run the Script
+```bash
+python main.py
+```
 
 ## Customization
 You can modify `main.py` to extract more data or change the layout of the spreadsheet.

@@ -1,0 +1,3 @@
+venv_garmin_logger/
+.env
+secrets/
