@@ -35,13 +35,13 @@ Clone this repository. After cloning, open the repository in your browser and go
 You can run the script locally to test it before committing changes.
 
 ### 1. Set up Local Secrets
-1.  Create a file named `.env` in the root directory of the project.
+1.  Create a file named `.env` and a folder `secrets` in the root directory of the project.
 2.  Add your Garmin credentials to the `.env` file:
     ```text
     GARMIN_EMAIL="your_email@example.com"
     GARMIN_PASSWORD="your_password"
     ```
-3.  Place the Google Service Account JSON key file you downloaded in the `secrets/` folder and rename it to `garmin-logger-key.json`.
+3.  Place the Google Service Account JSON key file you downloaded in the `secrets/` folder and rename it to `garmin-logger-google-cred.json`.
 
 ### 2. Install Dependencies
 1. Create a virtual environment if you haven't already:
